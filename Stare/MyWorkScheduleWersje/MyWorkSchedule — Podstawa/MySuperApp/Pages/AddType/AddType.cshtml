@@ -1,0 +1,51 @@
+﻿@page
+@model MySuperApp.Pages.Calendar.AddAddTypeModel
+@{
+    ViewData["Title"] = "AddType";
+}
+
+<style>
+    .down {
+        border: 1px solid black;
+        width: 100%;
+        background-color: #e4e1e1;
+    }
+    .formShift {
+        text-align: center;
+        margin-top: 5px;
+        margin-bottom: 10px;
+    }
+</style>
+
+<div class="down">
+    <h4> Dodaj typ </h4>
+    <form method="post" class="formShift">
+        <table>
+            <td>
+                <label for="shiftName">Nazwa:</label>
+                <br>
+                <input type="text" asp-for="AddType.Name" />
+            </td>
+            <td>
+                <label for="shiftName">Miasto:</label>
+                <br>
+                
+                <input type="text" asp-for="AddType.City" />
+            </td>
+            <td>
+                <label for="shiftName">Stawka:</label>
+                <br>
+                <input type="text" asp-for="AddType.Stawka" />
+            </td>
+           
+            <td>
+                <button type="submit">Zapisz</button>
+            </td>
+
+        </table>
+        
+
+    </form>
+</div>
+
+

@@ -1,0 +1,18 @@
+﻿@page
+@model MySuperApp.Pages.Calendar.AddAddTypeModel
+@{
+    ViewData["Title"] = "AddType";
+}
+
+<h4> Dodaj typ </h4>
+<form method="post">
+    <input type="text" asp-for="AddType.Name" placeholder="Nazwa" />
+    <input type="text" asp-for="AddType.City" placeholder="Miasto" />
+    <input type="text" asp-for="AddType.Stawka" placeholder="Stawka" />
+    <input type="text" asp-for="AddType.Overtime" placeholder="Nadgodziny" />
+
+    <button type="submit">Zapisz</button>
+
+</form>
+
+

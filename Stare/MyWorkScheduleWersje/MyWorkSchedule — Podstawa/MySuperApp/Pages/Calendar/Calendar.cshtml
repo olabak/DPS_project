@@ -1,0 +1,200 @@
+﻿@page
+@model    MySuperApp.Pages.Calendar.AddCalendarModel
+@{
+    ViewData["Title"] = "Calendar";
+
+
+}
+
+<style>
+
+ /*Stylowanie formularza zmian*/
+    .up {
+        border: 1px solid black;
+        width: 100%;
+    }
+
+
+   .break {
+        height: 5%;
+        border: 1px solid white;
+        width: 100%;
+    }
+    .down {
+        border: 1px solid black;
+        width: 100%;
+        background-color: #e4e1e1;
+    }
+
+    .formShift {
+        text-align: center;
+        margin-top: 5px;
+        margin-bottom: 10px;
+    }
+
+    .TitleShiftForm {
+        text-align: left;
+        font-weight: bold;
+    }
+
+    .formShiftTable {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    /*Stylowanie formularza zmian*/
+
+
+    .box {
+        height: 50px;
+        width: 50px;
+        float: left;
+    }
+
+    .boxborder {
+        border: 1px solid black;
+    }
+
+    .box_short {
+        width: 50px;
+        float: left;
+    }
+
+    .occupied {
+        background-color: lightgreen;
+    }
+
+</style>
+
+
+
+
+<div class="main">
+    <div class="up">
+
+
+        <form method="post" class="form" role="form">
+            <h3>@Model.CurrentMonth - @Model.Current.Year</h3>
+
+            <button type="submit" asp-page-handler="NextMonth" asp-route-direction="0" asp-route-curr="@Model.Current" style=""><</button>
+            <button type="submit" asp-page-handler="NextMonth" asp-route-direction="1" asp-route-curr="@Model.Current" style="">></button>
+            <br />
+            @for (int i = 0; i < 7; i++)
+            {
+                <div class="box_short" style="text-align:center">
+                    @Model.DayNames[i]
+
+                </div>
+            }
+
+            <div style="clear:both;"></div>
+
+            <div>
+                @for (int i = 0; i < 6; i++)
+                {
+                    <br />
+                    <div style="clear:both;"></div>
+                    for (int z = 0; z < 7; z++)
+                    {
+                        <div class="box boxborder @(Model.DayCollection[i, z] != null && Model.DayCollection[i, z].IsOccupied ? " occupied" : "")">
+
+                            @if (Model.DayCollection[i, z] != null)
+                            {
+                                <span>@Model.DayCollection[i, z].GetNumber()</span>
+
+                                if (Model.DayCollection[i, z].IsOccupied)
+                                {
+                                    <br /><span>O</span>
+                                }
+
+                            }
+                            else
+                            {
+                                <span>&nbsp;</span>
+                            }
+
+                        </div>
+                    }
+                }
+            </div>
+        </form>
+        <div style="clear:both;"></div>
+  
+
+    </div>
+
+    <div class="break">
+
+    </div>
+    @*#region main Formularz zmian*@  
+
+    <div class="down">
+
+
+        <form action="#" class="formShift">
+             @*Dodać stronę gdzie wysyłąją się dane*@ 
+            @*<fieldset>
+            <legend> Dodaj zmianę </legend> CZEMU NIE DZIAŁA*@
+
+            <div class="TitleShiftForm"> Dodaj zmianę</div>
+
+            <table class="formShiftTable">
+                <tr>
+                    <td>
+                        <label for="shiftName">Nazwa zmiany:</label>  @*zrobić liste wybieraną*@
+                        <br>
+
+                        <input type="text" id="shiftName" name="shiftName" asp-for="CalendarModel.ShiftName" />
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>
+                        <label for="shiftDate">Data:</label>
+                        <br>
+                        <input type="date" id="shiftDate" name="shiftDate" asp-for="CalendarModel.ShiftDate" />
+                    </td>
+                    <td>
+                        <label for="shiftStart">Godzina rozpoczęcia:</label>
+                        <br>
+                        <input type="time" id="shiftStart" name="shiftStart" asp-for="CalendarModel.ShiftStart" />
+                    </td>
+
+
+                    <td>
+                        <label for="shiftEnd">Godzina zakończenia:</label>
+                        <br>
+                        <input type="time" id="shiftEnd" name="shiftEnd" asp-for="CalendarModel.ShiftEnd" />
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>
+                        <label for="overHours">Nadgodziny:</label>
+                        <br>
+                        <input type="number" id="overHours" asp-for="CalendarModel.OverHours" />
+                    </td>
+
+
+                </tr>
+                <td>
+                    <label for="nsaveShiftForm">   </label>
+                    <br>
+                    <button type="submit" id="saveShiftForm">Zapisz</button>
+                </td>
+
+                @*</fieldset>*@
+
+            </table>
+
+        </form>
+    </div>
+  @*#endregion formularz zmian*@
+
+</div>
+
+    
+
+
+
+    
